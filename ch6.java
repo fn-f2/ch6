@@ -9,6 +9,7 @@ public class ch6
         System.out.println(ppap("I have a string, I have a string2"));
         System.out.println(isPalindrome("A man, a plan, a canal: Panama."));
         System.out.println(isPalindrome("racecar       ~`!@#$%^&*()-_=+[{]}|;:',<.>/?"));
+        System.out.println(convertToBinary(50));
     }
     
     public static String ppap(String str)
@@ -57,5 +58,37 @@ public class ch6
         }
         
         return true; 
+    }
+    
+    public static String convertToBinary(int num)
+    {
+        String ans = "";
+        String ansFlipped = "";
+        int result = num;
+       
+        while (result != 0)
+        {
+            ans += String.valueOf(result%2);
+            result /= 2;
+        }
+        
+        // flip ans
+        for (int i = 0; i < ans.length(); i++)
+        {
+            ansFlipped += ans.charAt(ans.length()-i-1);
+        }
+        
+        return ansFlipped;
+    }
+    
+    public static String pigLatin(String msg)
+    {
+        String[] words = String.split(msg);
+        for (String s : words)
+        {
+        
+        }
+        
+        return "";
     }
 }
