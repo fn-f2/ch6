@@ -9,7 +9,9 @@ public class ch6
         System.out.println(ppap("I have a string, I have a string2"));
         System.out.println(isPalindrome("A man, a plan, a canal: Panama."));
         System.out.println(isPalindrome("racecar       ~`!@#$%^&*()-_=+[{]}|;:',<.>/?"));
-        System.out.println(convertToBinary(50));
+        System.out.println(isPalindrome("big dtinky idoit"));
+        System.out.println("50 in binary is " + convertToBinary(50));
+        System.out.println(pigLatin("hi my name is carter hooray"));
     }
     
     public static String ppap(String str)
@@ -36,18 +38,11 @@ public class ch6
         String nonLetters = ",.:;()[]{}!@#$%^&* +=><|~`'?_-/";
         String formattedStr = "";
         
-        System.out.println(str);
+        System.out.print(str + " ");
         
         for (int i = 0; i < str.length(); i++) //iterate through string
-        {
-            boolean addChar = true;
-            
-            for (int i2 = 0; i2 < nonLetters.length(); i2++) // check if string index i contains non letter
-            {
-                if (str.charAt(i) == nonLetters.charAt(i2)) addChar = false;
-            }
-            
-            if (addChar) formattedStr += str.charAt(i); // only add chars that are letters
+        {   
+            if (!nonLetters.contains(str.substring(i, i+1))) formattedStr += str.charAt(i); // only add chars that are letters
         }
         
         formattedStr = formattedStr.toLowerCase(); // make lowercase
@@ -57,19 +52,18 @@ public class ch6
             if (formattedStr.charAt(i) != formattedStr.charAt(formattedStr.length()-1-i)) return false;
         }
         
-        return true; 
+        return true;
     }
     
     public static String convertToBinary(int num)
     {
         String ans = "";
         String ansFlipped = "";
-        int result = num;
        
-        while (result != 0)
+        while (num != 0)
         {
-            ans += String.valueOf(result%2);
-            result /= 2;
+            ans += String.valueOf(num%2);
+            num /= 2;
         }
         
         // flip ans
@@ -83,12 +77,19 @@ public class ch6
     
     public static String pigLatin(String msg)
     {
-        String[] words = String.split(msg);
+        String space = " ";
+        String[] words = msg.split(space);
+        String ans = "";
+        
         for (String s : words)
         {
-        
+            
+            if (s.length() > 2)
+            {
+                ans += s.substring(1, s.length()) + s.substring(0, 1) + "ay ";
+            } else ans += s + " ";
         }
         
-        return "";
+        return ans;
     }
 }
